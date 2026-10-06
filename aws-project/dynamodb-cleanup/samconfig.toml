@@ -1,0 +1,16 @@
+version=0.1
+
+# ====================== awsaccountname ======================
+[PROD]
+[prod.deploy.parameters]
+debug = true
+capabilities = "CAPABILITY_IAM CAPABILITY_NAMED_IAM"
+stack_name = "SAM-PROD-AD-SERVERS-DYNAMODB-CLEANUP"
+s3_bucket = "bucketname"
+s3_prefix = "sam/SAM-PROD-AD-SERVERS-DYNAMODB-CLEANUP"
+region = "us-east-1"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+"Environment=PROD"
+]

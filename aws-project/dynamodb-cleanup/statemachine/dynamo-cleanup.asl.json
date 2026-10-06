@@ -1,0 +1,16 @@
+{
+    "Comment": "State Machine to run Dynamodb Cleanup Batch Job",
+    "StartAt": "DynamoCleanupBatchJob",
+    "States": {
+        "DynamoCleanupBatchJob": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::batch:submitJob.sync",
+            "Parameters": {
+                "JobName": "dynamo-cleanup-job",
+                "JobQueue": "${JobQueueArn}",
+                "JobDefinition": "${JobDefinitionArn}"
+            },
+            "End": true
+        }
+    }
+}

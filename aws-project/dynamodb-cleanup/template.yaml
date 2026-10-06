@@ -1,0 +1,67 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  SAM TEMPLATE FOR THE AD SERVERS DYNAMODB CLEANUP PROCESS
+
+Parameters:
+  Environment:
+    Type: String
+
+Resources:
+  DynamoCleanupStateMachine:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      Name: !Join [ "-", [ "SAM", !Ref Environment, "AD-SERVERS", "DYNAMODB", "CLEANUP" ] ]
+      DefinitionUri: statemachine/dynamo-cleanup.asl.json
+      Role: !GetAtt BatchJobExecutionRole.Arn
+      DefinitionSubstitutions:
+        JobQueueArn: JobQueueArn # Replace with your Batch Job Queue ARN
+        JobDefinitionArn: JobDefinitionArn # Replace with your Batch Job Definition ARN
+      Events:
+        BatchJobSchedule:
+          Type: Schedule 
+          Properties:
+            Description: Schedule to run every four days
+            Enabled: False # This schedule is disabled by default to avoid incurring charges.
+            Schedule: "rate(4 days)"
+
+  BatchJobExecutionRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: !Join [ "-", [ "SAM", !Ref Environment, "AD-SERVERS", "DYNAMODB", "CLEANUP", "BATCH", "ROLE" ] ]
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: states.amazonaws.com
+            Action: "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: !Join [ "-", [ "SAM", !Ref Environment, "AD-SERVERS", "DYNAMODB", "CLEANUP", "BATCH", "POLICY" ] ]
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - batch:SubmitJob
+                Resource:
+                  - '*'
+                 #- !Ref BatchJobDefinition
+                 #- !Ref BatchJobQueue
+              - Effect: Allow
+                Action:
+                  - events:PutTargets
+                  - events:PutRule
+                  - events:DescribeRule
+                  - s3:PutObject
+                Resource: 
+                  - '*'
+              - Effect: Allow
+                Action:
+                  - dynamodb:Scan
+                  - dynamodb:DeleteItem
+                  - dynamodb:BatchWriteItem
+                Resource:
+                  - dynamodbarn # Replace with your DynamoDB table ARN
+                

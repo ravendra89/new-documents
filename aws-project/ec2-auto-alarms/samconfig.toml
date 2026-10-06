@@ -1,0 +1,640 @@
+version=0.1
+
+# ==================== CAREERS ====================
+
+[careers-us-east-1]
+[careers-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "ymcareers-devops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[careers-us-east-2]
+[careers-us-east-2.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-2"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "ymcareers-devops-sls-projects-us-east-2"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[careers-us-west-1]
+[careers-us-west-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-west-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "ymcareers-devops-sls-projects-us-west-1"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ================== CAREERS-MGMT =================
+
+[careers-mgmt-us-east-1]
+[careers-mgmt-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "mgmt-devops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[careers-mgmt-us-east-2]
+[careers-mgmt-us-east-2.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-2"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "mgmt-devops-sls-projects-us-east-2"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[careers-mgmt-us-west-1]
+[careers-mgmt-us-west-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-west-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "mgmt-devops-sls-projects-us-west-1"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[careers-mgmt-us-west-2]
+[careers-mgmt-us-west-2.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-west-2"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "mgmt-devops-sls-projects-us-west-2"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+
+# ====================== MMS ======================
+[mms-us-east-1]
+[mms-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "mms-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[mms-us-east-2]
+[mms-us-east-2.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-2"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "mms-cloudops-sls-projects-us-east-2"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ==================== MMS-MGMT ===================
+[mms-mgmt-us-east-1]
+[mms-mgmt-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "mms-mgmt-devops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[mms-mgmt-us-east-2]
+[mms-mgmt-us-east-2.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-2"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "mms-mgmt-devops-sls-projects-us-east-2"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ==================== CW-PROD ====================
+[cw-prod-us-east-1]
+[cw-prod-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "cw-ops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ===================== CW-NRA ====================
+[cw-nra-us-east-1]
+[cw-nra-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "cw-nra-ops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+
+[cw-nra-us-west-1]
+[cw-nra-us-west-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-west-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "cw-nra-ops-sls-projects-us-west-1"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# =================== CW-ASCEND ===================
+[cw-ascend-us-east-1]
+[cw-ascend-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "cw-asc-ops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[cw-ascend-us-east-2]
+[cw-ascend-us-east-2.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-2"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "cw-asc-ops-sls-projects-us-east-2"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[cw-ascend-us-west-1]
+[cw-ascend-us-west-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-west-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "cw-asc-ops-sls-projects-us-west-1"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+
+# ==================== CW-DEV =====================
+[cw-dev-us-east-1]
+[cw-dev-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "cw-dev-ops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ==================== NUCLEUS ====================
+[nucleus-us-east-1]
+[nucleus-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "gr-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[nucleus-eu-west-1]
+[nucleus-eu-west-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "eu-west-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "gr-cloudops-sls-projects-eu-west-1"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+
+# ===================== DEVOPS ====================
+[devops-us-east-1]
+[devops-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ==================== NETFORUM ===================
+[netforum-us-east-1]
+[netforum-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "nfe-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[netforum-ca-central-1]
+[netforum-ca-central-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "ca-central-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "nfe-cloudops-sls-projects-ca-central-1"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ================== APTIFY-PROD ==================
+[aptify-prod-us-east-1]
+[aptify-prod-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "aptify-ops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# =================== APTIFY-NG ===================
+[aptify-ng-us-east-1]
+[aptify-ng-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "aptifyng-ops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ================== APTIFY-NPMA ==================
+[aptify-npma-us-east-1]
+[aptify-npma-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "aptify-npma-ops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ================== APTIFY-ACIE ==================
+[aptify-acie-us-east-1]
+[aptify-acie-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "aptify-acie-ops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+[aptify-acie-us-east-2]
+[aptify-acie-us-east-2.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-2"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "aptify-acie-ops-sls-projects-us-east-2"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ====================== AES ======================
+[aes-us-east-1]
+[aes-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "aes-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+
+# ======================Core-Apps-LLC======================
+[core-apps-us-east-1]
+[core-apps-us-east-1.deploy.parameters]
+stack_name   = "sam-auto-alarms"
+region       = "us-east-1"
+capabilities = "CAPABILITY_IAM CAPABILITY_NAMED_IAM"
+s3_bucket    = "core-apps-cloudops-sls-projects"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # coreapps
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=arn:aws:lambda:us-east-1:954958887876:function:cloudops-restart-cloudwatch-agent"
+ ]
+
+# ======================CoreApps-ComplianceGDPR======================
+[core-apps-compliancegdpr-us-east-1]
+[core-apps-compliancegdpr-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "core-apps-compliancegdpr-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ======================expo-logic======================
+[expo-logic-us-east-1]
+[expo-logic-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "expo-logic-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ======================freestone-dev======================
+[freestone-dev-us-east-1]
+[freestone-dev-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "freestone-dev-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ======================freestone-prod======================
+[freestone-prod-us-east-1]
+[freestone-prod-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "freestone-prod-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ======================etbastion======================
+[etbastion-us-east-1]
+[etbastion-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "etbastion-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ======================follow-me======================
+[follow-me-us-east-1]
+[follow-me-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "follow-me-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ======================TripbuilderMedia======================
+[et-tbm-us-east-1]
+[et-tbm-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "et-tbm-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]
+
+# ======================cbpayeraws======================
+[cbpayeraws-us-east-1]
+[cbpayeraws-us-east-1.deploy.parameters]
+stack_name = "sam-auto-alarms"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "cbpayeraws-cloudops-sls-projects"
+s3_prefix = "sam/sam-auto-alarms"
+confirm_changeset = true
+disable_rollback = false
+parameter_overrides = [
+   "AlarmNotificationARN=arn:aws:sns:us-east-1:954958887876:CloudOps-Notifications-Lower", # Need to change sns topic arn base on the account.
+   "LambdaTreatMissingData=notBreaching",
+   "EC2TreatMissingData=missing",
+   "EC2TreatMissingDataNotificationARN=LambdaFunctionARN" # Need to change Lambda Function arn base on the account.
+ ]

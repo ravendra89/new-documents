@@ -1,0 +1,7 @@
+.vscode/*
+.DS_Store
+.terraform*
+node_modules/
+package-lock.json
+.serverless/
+.aws-sam/
