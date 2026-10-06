@@ -1,0 +1,10 @@
+variable "project" {}
+variable "environment" {}
+variable "tags" {}
+variable "vpc_id" {}
+variable "ssh_port" {}
+variable "http_port" {}
+variable "https_port" {}
+variable "app_port" {}
+variable "ssh_allowed_cidr" {}
+variable "vpc_cidr" {}

@@ -1,0 +1,6 @@
+{
+  "aws_region": "us-east-1",
+  "environment": "prod",
+  "excluded_security_group_ids": "",
+  "sns_topic_arn": "sns_topic_arn_value"
+}
