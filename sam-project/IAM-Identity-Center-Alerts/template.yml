@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SAM template for AWS IAM Identity Center Alerts
+
+Resources:
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: CloudOps-Notifications-Teams-AWS-IAM-Identity-Center-Alerts
+      Handler: lambda_function.lambda_handler  # Adjust this according to your code
+      Runtime: python3.11                       # Adjust based on your runtime
+      CodeUri: ./lambda_function.py             # Ensure the path is correct
+      MemorySize: 128                           # Consider increasing if necessary
+      Policies:
+        - AWSSSOMasterAccountAdministrator      
+        - AWSKeyManagementServicePowerUser
+        - Version: '2012-10-17'                 
+          Statement:
+            - Effect: Allow
+              Action:
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+                - logs:CreateLogGroup
+                - sns:Publish
+              Resource: '*'
+
+Outputs:
+  LambdaFunction:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt LambdaFunction.Arn
+

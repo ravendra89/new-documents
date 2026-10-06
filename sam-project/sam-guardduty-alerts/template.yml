@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >-
+  EventBridge Rule To Forward GuardDuty Findings To SNS Topic
+
+Resources:
+  SNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: "CoreApps-CompGDPR-Prod-GuardDuty-Alerts"
+      TopicName: "CoreApps-CompGDPR-Prod-GuardDuty-Alerts"
+
+  SNSTopicPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action: sns:Publish
+            Resource: !Ref SNSTopic  # Use !Ref to get the SNS Topic ARN
+            Principal:
+              Service: events.amazonaws.com
+      Topics:
+        - !Ref SNSTopic  # Use !Ref to get the SNS Topic ARN
+
+  EventRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "EB-Rule-For-GuardDuty-Alerts"
+      EventBusName: default
+      EventPattern: >-
+        {
+          "source": [
+            "aws.guardduty"
+          ],
+          "detail-type": [
+            "GuardDuty Finding"
+          ]
+        }
+      Name: "Sam-Prod-GuardDuty-Rule"
+      State: ENABLED
+      Targets:
+        - Id: "GuardDutyFindingsTarget"
+          Arn: !Ref SNSTopic  # Use !Ref to get the SNS Topic ARN
+

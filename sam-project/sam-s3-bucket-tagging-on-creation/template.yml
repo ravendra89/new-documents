@@ -1,0 +1,106 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SAM template s3 bucket tagging on creation
+
+Globals:
+  Function:
+    Timeout: 300  # 5 minutes timeout for your Lambda function
+
+Parameters:
+  Stage:
+    Type: String
+    Default: "prod"  # Default value is set to 'prod'
+    Description: The stage for the deployment (e.g., prod, dev, stg).
+    AllowedValues:
+      - dev
+      - stg
+      - prod
+    ConstraintDescription: "Must be one of the following: dev, stg, prod"
+
+Resources:
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "sls-${Stage}-s3-bucket-tagging-on-creation"
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.10
+      CodeUri: .
+      MemorySize: 128
+      Tags:
+        Owner: DevOps
+      Role: !GetAtt EventBridgeInvokeLambdaRole.Arn  # IAM role that allows Lambda to execute
+
+  # EventBridge Rule s3 bucket tagging on creation
+  S3EventRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "S3 EB Rule"
+      EventBusName: default  # Explicitly use the default event bus
+      EventPattern: >-
+        {
+          "source": [
+            "aws.s3"
+          ],
+          "detail-type": [
+            "AWS API Call via CloudTrail"
+          ],
+          "detail": {
+            "eventSource": [
+              "s3.amazonaws.com"
+            ],
+            "eventName": [
+              "CreateBucket"
+            ]
+          }
+        }
+      Name: !Sub "sls-s3-bucket-tagging-on-creation-rule"
+      State: ENABLED
+      Targets:
+        - Arn: !GetAtt LambdaFunction.Arn  # Reference to the Lambda function ARN
+          Id: "LambdaFunctionTarget"
+
+  EventBridgeInvokeLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Action: "sts:AssumeRole"
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"  # Allow Lambda service to assume the role
+                - "events.amazonaws.com"  # Allow EventBridge to assume the role
+      Policies:
+        - PolicyName: !Sub "s3-bucket-tagging-on-creation-${Stage}"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "logs:DescribeLogGroups"
+                  - "logs:PutRetentionPolicy"
+                  - "logs:PutLogEvents"
+                  - "logs:CreateLogStream"
+                  - "s3:PutBucketTagging"
+                  - "sts:GetCallerIdentity"
+                  - "lambda:InvokeFunction"  # Explicit permission to invoke Lambda
+                Resource: "*"
+
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref LambdaFunction
+      Principal: "events.amazonaws.com"  # Allow EventBridge to invoke Lambda
+      SourceArn: !GetAtt S3EventRule.Arn  # reference the ARN of the EventBridge rule
+
+Outputs:
+  LambdaFunctionArn:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt LambdaFunction.Arn
+
+  EventBridgeInvokeLambdaRoleArn:
+    Description: "IAM Role ARN"
+    Value: !GetAtt EventBridgeInvokeLambdaRole.Arn
+

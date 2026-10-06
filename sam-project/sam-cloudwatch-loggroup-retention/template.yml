@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SAM template for EventBridge and Lambda
+
+Globals:
+  Function:
+    Timeout: 900  # 15 minutes timeout for your Lambda function
+
+Parameters:
+  Stage:
+    Type: String
+    Default: "prod"  # Default value is set to 'prod'
+    Description: The stage for the deployment (e.g., prod, dev, stg).
+    AllowedValues:
+      - dev
+      - stg
+      - prod
+    ConstraintDescription: "Must be one of the following: dev, stg, prod"
+
+Resources:
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "sls-${Stage}-cloudwatch-loggroup-retention-lambda"  # Lambda name will dynamically use the Stage parameter
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.10
+      CodeUri: ./
+      MemorySize: 128
+      Tags:
+        Owner: DevOps
+      Events:
+        ScheduledEvent:
+          Type: Schedule
+          Properties:
+            Schedule: !Sub 'cron(0 0 ? * 2 *)'  # Runs every Monday at midnight UTC
+            Input: '{}'
+      Role:
+        Fn::GetAtt:
+          - CloudWatchLogGroupRetentionLambdaRole
+          - Arn
+
+  CloudWatchLogGroupRetentionLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Action: "sts:AssumeRole"
+            Principal:
+              Service: "lambda.amazonaws.com"
+      Policies:
+        - PolicyName: !Sub "CloudWatchLogGroupRetentionLambdaPolicy-${Stage}"  # Policy name dynamically uses the Stage parameter
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "logs:DescribeLogGroups"
+                  - "logs:PutRetentionPolicy"
+                Resource: "*"
+
+Outputs:
+  CloudWatchLogGroupRetentionLambdaArn:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt LambdaFunction.Arn
+
+  CloudWatchLogGroupRetentionLambdaRoleArn:
+    Description: "IAM Role ARN"
+    Value: !GetAtt CloudWatchLogGroupRetentionLambdaRole.Arn

@@ -1,0 +1,14 @@
+version=0.1
+
+# ==================== awsaccountname ====================
+
+[awsaccountname-us-east-1]
+[awsaccountname-us-east-1.deploy.parameters]
+stack_name = "Sam-Prod-GuardDuty-Alerts"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "bucket name"
+s3_prefix = "sam/Sam-Prod-GuardDuty-Alerts"
+confirm_changeset = true
+disable_rollback = false
+

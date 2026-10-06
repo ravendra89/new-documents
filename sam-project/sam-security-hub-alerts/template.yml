@@ -1,0 +1,56 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >-
+SAM Template For Security Hub Notifications
+
+Globals:
+  Function:
+    Timeout: 300
+
+Resources:
+  SNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: "Security-Hub-Notifications"
+      TopicName: "Security-Hub-Notifications"
+
+  SNSTopicPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action: sns:Publish
+            Resource: !Ref SNSTopic  # Use !Ref to get the SNS Topic ARN
+            Principal:
+              Service: events.amazonaws.com
+      Topics:
+        - !Ref SNSTopic  # Use !Ref to get the SNS Topic ARN
+
+  EventRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "EB-Rule-For-Security-Hub-Notifications"
+      EventBusName: default
+      EventPattern: >-
+        {
+          "source": [
+              "aws.securityhub"
+          ],
+          "detail-type": [
+              "Security Hub Findings - Imported"
+          ],
+          "detail": {
+            "findings": {
+            "Severity": {
+              "Label": ["HIGH"]
+            }
+            }
+          }
+        }
+      Name: "Sam-Prod-Security-Hub-Notifications-EB-Rule"
+      State: ENABLED
+      Targets:
+        - Id: "SecurityHubSNS"
+          Arn: !Ref SNSTopic  # Use !Ref to get the SNS Topic ARN

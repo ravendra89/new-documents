@@ -1,0 +1,13 @@
+version = 0.1
+
+# ==================== awsaccountname ====================
+
+[awsaccountname-us-east-1]
+[awsaccountname-us-east-1.deploy.parameters]
+stack_name = "sam-prod-s3-bucket-tagging-on-creation"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+s3_bucket = "bucket name"
+s3_prefix = "sam/sam-prod-s3-bucket-tagging-on-creation"
+confirm_changeset = true
+disable_rollback = false

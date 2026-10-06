@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: A SAM Template For The Deployment Of SecurityGroup Alerts.
+Globals:
+  Function:
+    Timeout: 300  # 5 minutes timeout for Lambda function
+
+Resources:
+   # SNS Topic For SG Alerts
+   SNSAlertTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: "Security Group Alert Topic"
+      TopicName: "TBM-SecurityGroup-Alerts"
+   LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: Sam-Prod-SecurityGroups-Alerts
+      Handler: lambda_function.lambda_handler   # Adjust this according to your code
+      Runtime: python3.10                       # Adjust based on your runtime
+      CodeUri: .                                # Ensure the path is correct
+      MemorySize: 128                           # Consider increasing if necessary
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - logs:CreateLogStream
+                - logs:PutLogEvents
+                - logs:CreateLogGroup
+                - sns:Publish
+                - ec2:DescribeSecurityGroups
+              Resource: '*'  # Consider tightening this for security
+      Events:
+        EventBridgeRule:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: default  # Explicitly use the default event bus
+            Pattern:
+              source:
+                - aws.ec2
+              detail-type:
+                - "AWS API Call via CloudTrail"
+              detail:
+                eventSource:
+                  - ec2.amazonaws.com
+                eventName:
+                  - CreateSecurityGroup
+                  - AuthorizeSecurityGroupIngress
+                  - RevokeSecurityGroupIngress
+                  - DeleteSecurityGroup          
+Outputs:
+  LambdaFunction:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt LambdaFunction.Arn
